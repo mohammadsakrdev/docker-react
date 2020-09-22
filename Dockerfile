@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine as builder
+FROM node:13.12.0-alpine
 
 # set working directory
 WORKDIR /app
@@ -14,4 +14,4 @@ COPY . ./
 RUN npm run build
 
 FROM nginx
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
